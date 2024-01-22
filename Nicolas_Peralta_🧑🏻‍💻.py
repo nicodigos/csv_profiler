@@ -1,4 +1,11 @@
 import streamlit as st
+import pathlib
+import sys
+
+# This adds the path of the …/src folder
+# to the PYTHONPATH variable
+sys.path.append(str(pathlib.Path().absolute()).split("/src")[0] + "/src")
+
 
 about_text = '''
 ### Do you want to know more about me? 

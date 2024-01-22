@@ -1,5 +1,7 @@
 import streamlit as st 
 import pandas as pd
+from src.dataframe_class import dataframe
+
 
 uploaded_file = st.file_uploader(label='Upload a csv, json or parquet file',
                                  type=['csv', 'json', 'parquet'])
@@ -24,7 +26,27 @@ if uploaded_file is not None:
 
 with tab1:
     if uploaded_file is not None:
-        st.markdown('### Original Dataframe')
         st.dataframe(df)
-        st.markdown('### Modified Dataframe')
-        st.dataframe(df)
+with tab2:
+    if uploaded_file is not None:
+        data_profiler = dataframe.DataFrameGeneral(df)
+        data_profiler.profiler_start()
+        for key in data_profiler.profiler.keys():
+            st.markdown(f'### {key}')
+            final_text = ""
+            if data_profiler.profiler[key].get('histogram') is not None:
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.plotly_chart(data_profiler.profiler[key]['histogram'])
+                with col2:
+                    for k in data_profiler.profiler[key].keys():
+                        if k != 'histogram':
+                            final_text += f'**{k}:** {data_profiler.profiler[key][k]}  \n'
+                        else:
+                            continue
+                    st.write(final_text)
+            else:
+                for k in data_profiler.profiler[key].keys():
+                    final_text += f'**{k}:** {data_profiler.profiler[key][k]}  \n'
+                st.write(final_text)
+            st.divider()
