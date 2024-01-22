@@ -34,19 +34,25 @@ with tab2:
         for key in data_profiler.profiler.keys():
             st.markdown(f'### {key}')
             final_text = ""
+            col1, col2 = st.columns(2)
             if data_profiler.profiler[key].get('histogram') is not None:
-                col1, col2 = st.columns(2)
                 with col1:
                     st.plotly_chart(data_profiler.profiler[key]['histogram'])
-                with col2:
-                    for k in data_profiler.profiler[key].keys():
-                        if k != 'histogram':
-                            final_text += f'**{k}:** {data_profiler.profiler[key][k]}  \n'
-                        else:
-                            continue
-                    st.write(final_text)
             else:
+                with col1:
+                    st.markdown(f'# {data_profiler.profiler[key]['unique_values']}')
+                    st.markdown(f'#### Unique Values')
+
+            with col2:
                 for k in data_profiler.profiler[key].keys():
-                    final_text += f'**{k}:** {data_profiler.profiler[key][k]}  \n'
+                    if k != 'histogram':
+                        final_text += f'**{k}:** {data_profiler.profiler[key][k]}  \n'
+                    else:
+                        continue
                 st.write(final_text)
+           
+            # else:
+            #     for k in data_profiler.profiler[key].keys():
+            #         final_text += f'**{k}:** {data_profiler.profiler[key][k]}  \n'
+            #     st.write(final_text)
             st.divider()
