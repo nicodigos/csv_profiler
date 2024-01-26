@@ -2,11 +2,12 @@ import pandas as pd
 import plotly.express as px
 import random
 import plotly.graph_objects as go
-
+import warnings
 import streamlit as st
 import pathlib
 import sys
 
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 colors_list = ['indianred']
 
@@ -16,6 +17,7 @@ class DataFrameGeneral():
         self.df_1 = df
         self.df_2 = None
         self.df_3 = None
+        self.dtypes = self.df_1.dtypes.to_dict()
 
     def profiler_start(self):
         df_1 = self.df_1
@@ -84,4 +86,37 @@ class DataFrameModif(DataFrameGeneral):
     pass
 
 class DataFrameFilter(DataFrameGeneral):
-    pass
+
+    def options_available(self, column):
+        if 'object' in str(self.dtypes[column]):
+            return 'str'
+        else:
+            return 'numeric'
+    
+    def filter_all_cell_content_string(self, column, content):
+        self.df_1 = self.df_1[self.df_1[column] == content] 
+        
+    
+    def filter_all_cell_content_numeric(self, column, content, operator):
+
+        if operator == 'less':
+            self.df_1 = self.df_1[self.df_1[column] < content] 
+        elif operator == 'bigger':
+            self.df_1 = self.df_1[self.df_1[column] > content] 
+        elif operator == 'leseq':
+            self.df_1 = self.df_1[self.df_1[column] <= content] 
+        elif operator == 'bigeq':
+            self.df_1 = self.df_1[self.df_1[column] >= content] 
+        elif operator == 'equal':
+            self.df_1 = self.df_1[self.df_1[column] == content] 
+        elif operator == 'different':
+            self.df_1 = self.df_1[self.df_1[column] != content] 
+            
+    def startswith_cell_content_string(self, column, content):
+        self.df_1 = self.df_1[self.df_1[column].str.startswith(content)]
+
+    def endswith_cell_content_string(seself, column, contentlf):
+        self.df_1 = self.df_1[self.df_1[column].str.endswith(content)]
+
+    def contains_cell_content_string(self, column, content):
+        self.df_1 = self.df_1[self.df_1[column].str.contains(content)]
