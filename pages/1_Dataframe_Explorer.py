@@ -5,12 +5,12 @@ from src.dataframe_class import dataframe
 
 uploaded_file = st.file_uploader(label='Upload a csv, json or parquet file',
                                  type=['csv', 'json', 'parquet'])
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['Dataframe', 
+tab1, tab2 = st.tabs(['Dataframe', 
                             'Data Profiler',
-                            'Modify Data', 
-                            'Filter Data',
-                            'Create Charts',
-                            'Do you have an Excel file?'
+                            # 'Modify Data', 
+                            # 'Filter Data',
+                            # 'Create Charts',
+                            # 'Do you have an Excel file?'
                             ])
 
 if uploaded_file is not None:
@@ -40,7 +40,7 @@ with tab2:
                     st.plotly_chart(data_profiler.profiler[key]['histogram'])
             else:
                 with col1:
-                    st.markdown(f'# {data_profiler.profiler[key]['unique_values']}')
+                    st.markdown(f'# {data_profiler.profiler[key]["unique_values"]}')
                     st.markdown(f'#### Unique Values')
 
             with col2:
