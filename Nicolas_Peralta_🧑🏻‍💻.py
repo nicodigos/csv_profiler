@@ -9,7 +9,7 @@ sys.path.append(str(pathlib.Path().absolute()).split("/src")[0] + "/src")
 
 about_text = '''
 ### Do you want to know more about me? 
-### Schedule an apointment [here 🛸](https://api.whatsapp.com/send?phone=13439988190)
+### Contact me [here 🛸](https://api.whatsapp.com/send?phone=13439988190)
 '''
 
 st.set_page_config(
