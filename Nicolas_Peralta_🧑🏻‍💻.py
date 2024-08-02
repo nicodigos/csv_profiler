@@ -21,3 +21,11 @@ st.set_page_config(
     }
 )
 
+intro_text = '''
+### Hello! I'm Nicolas Peralta.
+### I am a student of Fullstack Software Development at Lambton College.
+### This is my application that profiles and plots information from CSV, JSON, and Parquet files.
+### Do you want to know more about me? 
+'''
+
+st.write(intro_text)
