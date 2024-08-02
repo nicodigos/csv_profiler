@@ -1,3 +1,9 @@
+# Student Name: Nicolas Peralta
+# Student Number: C0932238
+# Course Name: Python Programming 
+# Course Code: CSD 4523 
+# Project Title: Dataframe profiler
+
 import streamlit as st
 import pathlib
 import sys
