@@ -3,6 +3,24 @@ import pandas as pd
 from src.dataframe_class import dataframe
 
 
+st.title("Dataframe Profiler")
+
+st.markdown('''
+This app generates a detailed profile of your DataFrame. Just upload your dataset, and the app will automatically analyze each column—showing key statistics, data types, missing values, unique counts, and distributions—similar to what you see when previewing datasets on Kaggle.
+''')
+
+st.markdown('''
+Don’t have a dataset? No problem, just click below to download a sample dataset and try it out!
+''')
+
+with open("data/pokemon.csv", "rb") as file:
+    btn = st.download_button(
+        label="Download Sample Dataset",
+        data=file,
+        file_name="pokemon.csv",
+        mime="text/csv"
+    )
+
 uploaded_file = st.file_uploader(label='Upload a csv, json or parquet file',
                                  type=['csv', 'json', 'parquet'])
 tab1, tab2, tab3 = st.tabs(['Dataframe', 
