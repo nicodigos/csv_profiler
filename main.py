@@ -1,7 +1,6 @@
 import streamlit as st 
 import pandas as pd
 from src.dataframe_class import dataframe
-from datetime import datetime
 
 
 st.title("Dataframe Profiler")
@@ -46,6 +45,8 @@ with tab2:
     if uploaded_file is not None:
         data_profiler = dataframe.DataFrameGeneral(df)
         data_profiler.profiler_start()
+
+        counter = 0
         for key in data_profiler.profiler.keys():
             st.markdown(f'### {key}')
             final_text = ""
@@ -53,7 +54,7 @@ with tab2:
             if data_profiler.profiler[key].get('histogram') is not None:
                 with col1:
                     st.plotly_chart(data_profiler.profiler[key]['histogram'], 
-                                    key=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                                    key=counter)
             else:
                 with col1:
                     st.markdown(f'# {data_profiler.profiler[key]["unique_values"]}')
@@ -71,5 +72,6 @@ with tab2:
             #     for k in data_profiler.profiler[key].keys():
             #         final_text += f'**{k}:** {data_profiler.profiler[key][k]}  \n'
             #     st.write(final_text)
+            counter += 1
             st.divider()
 
