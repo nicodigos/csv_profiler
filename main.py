@@ -13,13 +13,13 @@ st.markdown('''
 Don’t have a dataset? No problem, just click below to download a sample dataset and try it out!
 ''')
 
-with open("data/pokemon.csv", "rb") as file:
-    btn = st.download_button(
-        label="Download Sample Dataset",
-        data=file,
-        file_name="pokemon.csv",
-        mime="text/csv"
-    )
+# with open("data/pokemon.csv", "rb") as file:
+#     btn = st.download_button(
+#         label="Download Sample Dataset",
+#         data=file,
+#         file_name="pokemon.csv",
+#         mime="text/csv"
+#     )
 
 uploaded_file = st.file_uploader(label='Upload a csv, json or parquet file',
                                  type=['csv', 'json', 'parquet'])
