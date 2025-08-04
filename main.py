@@ -23,7 +23,7 @@ with open("data/pokemon.csv", "rb") as file:
 
 uploaded_file = st.file_uploader(label='Upload a csv, json or parquet file',
                                  type=['csv', 'json', 'parquet'])
-tab1, tab2, tab3 = st.tabs(['Dataframe', 
+tab1, tab2 = st.tabs(['Dataframe', 
                             'Data Profiler',
                             # 'Modify Data', 
                             # 'Filter Data',
@@ -75,40 +75,3 @@ with tab2:
             #     st.write(final_text)
             st.divider()
 
-with tab3:
-    st.markdown("""## Converting Excel Files to CSV
-
-### Requirements for the Excel File
-
-To ensure effective conversion from Excel to CSV, the Excel file must meet the following criteria:
-
-- **Tabular Data**: The file should contain data in a clear table format with defined rows and columns.
-- **Granular Data**: The data should be detailed and specific, not summaries or aggregates.
-- **No Dashboards**: Avoid using files with dashboards, charts, complex formulas, or conditional formatting, as these elements will not translate correctly to CSV.
-
-### Using Microsoft Excel
-
-1. **Open the Excel file**:
-   - Launch Microsoft Excel and open the file you want to convert to CSV.
-
-2. **Verify the data format**:
-   - Ensure that the data is organized in a simple table format and not a dashboard or complex formatting.
-
-3. **Select "Save As"**:
-   - Click on "File" in the menu bar.
-   - Select "Save As".
-   - Choose the location where you want to save the file.
-
-4. **Choose the CSV format**:
-   - In the "Save as type" dropdown, select "CSV (Comma delimited) (*.csv)".
-   - Enter a name for the file and click "Save".
-
-5. **Handle the prompts**:
-   - Excel may display some prompts about compatibility and data loss. Click "Yes" to confirm and proceed.
-
-### Considerations
-
-- **Data Format**: Make sure the data in the Excel file is properly formatted before conversion.
-- **Delimiters**: The CSV format uses commas to separate values. Ensure that the data does not contain unwanted commas.
-
-""")
