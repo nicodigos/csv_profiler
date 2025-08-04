@@ -24,11 +24,7 @@ with open("data/pokemon.csv", "rb") as file:
 uploaded_file = st.file_uploader(label='Upload a csv, json or parquet file',
                                  type=['csv', 'json', 'parquet'])
 tab1, tab2 = st.tabs(['Dataframe', 
-                            'Data Profiler',
-                            # 'Modify Data', 
-                            # 'Filter Data',
-                            # 'Create Charts',
-                            'Do you have an Excel file?'
+                            'Data Profiler'
                             ])
 
 if uploaded_file is not None:
