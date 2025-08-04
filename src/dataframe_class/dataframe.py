@@ -4,8 +4,7 @@ import random
 import plotly.graph_objects as go
 
 import streamlit as st
-import pathlib
-import sys
+
 
 
 colors_list = ['indianred']
